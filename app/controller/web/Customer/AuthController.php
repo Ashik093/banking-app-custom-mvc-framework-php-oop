@@ -3,13 +3,17 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Customer;
 use App\Controller\Controller;
+use App\Services\Customer\AuthService;
 
 
 class AuthController extends Controller{
-  
+    
+    private AuthService $authService;
     public function __construct()
     {
         parent::__construct();
+        $this->authService = new AuthService();
+
     }
 
     public function login()
@@ -18,6 +22,7 @@ class AuthController extends Controller{
     }
     public function register()
     {
+
         $validation = $this->validator->validate($_POST, [
             'firstName'=> 'required',
             'lastName'=> 'required',
@@ -32,6 +37,7 @@ class AuthController extends Controller{
             ]);  
         }
 
+        $this->authService->register($_POST);
         
         
     }

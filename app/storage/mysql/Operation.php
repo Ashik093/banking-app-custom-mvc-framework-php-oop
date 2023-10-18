@@ -1,8 +1,10 @@
 <?php
 declare(strict_types=1);
-namespace App\Storage\Db;
+namespace App\Storage\Mysql;
 use PDO;
-class Connection{
+use App\Interface\StorageInterface;
+
+class Operation implements StorageInterface{
     protected PDO $db;
     public function __construct()
     {
@@ -24,5 +26,17 @@ class Connection{
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
+    }
+
+    public function store():mixed{
+
+    }
+    public function get():mixed
+    {
+
+    }
+    public function where():mixed
+    {
+        
     }
 }

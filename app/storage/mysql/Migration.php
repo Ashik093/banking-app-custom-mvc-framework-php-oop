@@ -1,13 +1,17 @@
 <?php
 declare(strict_types=1);
-namespace App\Storage\Db;
+namespace App\Storage\Mysql;
+
+use App\Storage\Mysql\Operation;
+
+
 
 class Migration{
-    private Connection $connection;
+    private Operation $operation;
     private $mrigationDirectory = __DIR__.'./migrations/';
-    public function __construct(Connection $connection)
+    public function __construct(Operation $operation)
     {
-        $this->connection = $connection;
+        $this->operation = $operation;
     }
 
     
@@ -16,7 +20,7 @@ class Migration{
         foreach (glob($this->mrigationDirectory."*.*") as $file) {
             if(is_file($file)){
                 $sql = file_get_contents($file);
-                $this->connection->createTable($sql);
+                $this->operation->createTable($sql);
             }
         }
     }

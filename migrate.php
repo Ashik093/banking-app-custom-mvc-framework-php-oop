@@ -1,10 +1,10 @@
 <?php
 
-use App\Storage\Db\Migration;
-use App\Storage\Db\Connection;
+use App\Storage\Mysql\Migration;
+use App\Storage\Mysql\Operation;
 
 
 require_once __DIR__.'./vendor/autoload.php';
 
-$migration = new Migration((new Connection()));
+$migration = new Migration((new Operation()));
 $migration->run();
